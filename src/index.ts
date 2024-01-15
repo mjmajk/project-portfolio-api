@@ -18,7 +18,7 @@ mongoose
     console.log("MongoDB connected");
 
     return startStandaloneServer(server, {
-      listen: { port: 4000 },
+      listen: { port: Number.parseInt(process.env.PORT) || 4000 },
 
       context: async ({ req }) => {
         const token = req.headers.authorization || "";
