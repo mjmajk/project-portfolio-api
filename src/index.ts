@@ -20,11 +20,11 @@ mongoose
     return startStandaloneServer(server, {
       listen: { port: Number.parseInt(process.env.PORT) || 4000 },
 
-      // context: async ({ req }) => {
-      //   const token = req.headers.authorization || "";
+      context: async ({ req }) => {
+        const token = req.headers.authorization || "";
 
-      //   // await verifyToken(token.split(" ")[1]);
-      // },
+        await verifyToken(token.split(" ")[1]);
+      },
     });
   })
   .then(({ url }) => console.log(`Server ready at ${url}`));
