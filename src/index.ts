@@ -15,7 +15,7 @@ const server = new ApolloServer({
 mongoose
   .connect(CONNECTION_STRING)
   .then(() => {
-    console.log("MongoDB connected");
+    console.log("MongoDB connected.");
 
     return startStandaloneServer(server, {
       listen: { port: Number.parseInt(process.env.PORT) || 4000 },
