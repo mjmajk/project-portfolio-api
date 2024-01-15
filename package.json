@@ -5,8 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "compile": "tsc",
-    "start": "npm run compile && node --env-file .env ./dist/index.js"
+    "build": "tsc",
+    "start": "yarn run build && node --env-file .env ./dist/index.js"
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
