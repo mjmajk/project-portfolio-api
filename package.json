@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "yarn run build && node --env-file .env ./dist/index.js",
+    "dev": "yarn run build && node --env-file .env ./dist/index.js",
     "start:prod":" node ./dist/index.js"
   },
   "dependencies": {

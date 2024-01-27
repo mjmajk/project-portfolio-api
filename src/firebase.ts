@@ -10,18 +10,16 @@ const app = admin.initializeApp({
 });
 
 export const verifyToken = (token: string) => {
-  return admin
-    .auth(app)
-    .verifyIdToken(token)
-    .then((decodedToken) => {
-      console.log(decodedToken);
-    })
-    .catch((error) => {
-      throw new GraphQLError("User is not authenticated", {
-        extensions: {
-          code: "UNAUTHENTICATED",
-          http: { status: 401 },
-        },
-      });
-    });
+  return admin.auth(app).verifyIdToken(token.split(" ")?.[1]);
+  // .then((decodedToken) => {
+  //   console.log(decodedToken);
+  // })
+  // .catch((error) => {
+  //   throw new GraphQLError("User is not authenticated", {
+  //     extensions: {
+  //       code: "UNAUTHENTICATED",
+  //       http: { status: 401 },
+  //     },
+  //   });
+  // });
 };

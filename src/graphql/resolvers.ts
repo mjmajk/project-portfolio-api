@@ -1,3 +1,4 @@
+import { verifyToken } from "../firebase.js";
 import { CompanyModel } from "../models/Company.js";
 import { IProject, ProjectModel } from "../models/Project.js";
 import { TechnologyModel } from "../models/Technology.js";
@@ -26,7 +27,9 @@ export const resolvers = {
     },
   },
   Mutation: {
-    async createProject(_, { project }) {
+    async createProject(_, { project }, { token }) {
+      verifyToken(token);
+
       const createdProject = new ProjectModel({
         ...project,
       });
@@ -38,15 +41,19 @@ export const resolvers = {
         ...project,
       };
     },
-    async editProject(_, { ID, project }) {
-      const response = await ProjectModel.updateOne({ _id: ID }, project);
+    async editProject(_, { ID, project }, { token }) {
+      verifyToken(token);
+
+      await ProjectModel.updateOne({ _id: ID }, project);
 
       return {
         id: ID,
         ...project,
       };
     },
-    async createCompany(_, { company }) {
+    async createCompany(_, { company }, { token }) {
+      verifyToken(token);
+
       const createdCompany = new CompanyModel({
         ...company,
       });
@@ -58,7 +65,9 @@ export const resolvers = {
         ...company,
       };
     },
-    async createTechnology(_, { technology }) {
+    async createTechnology(_, { technology }, { token }) {
+      await verifyToken(token);
+
       const createdTechnology = new TechnologyModel({
         ...technology,
       });

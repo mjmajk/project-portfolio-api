@@ -21,9 +21,7 @@ mongoose
       listen: { port: Number.parseInt(process.env.PORT) || 4000 },
 
       context: async ({ req }) => {
-        const token = req.headers.authorization || "";
-
-        await verifyToken(token.split(" ")[1]);
+        return { token: req.headers.authorization || "" };
       },
     });
   })
